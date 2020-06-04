@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="filmViewModel"
+            type="com.flickPick.FilmViewModel" />
+        <variable
+            name="film"
+            type="com.flickPick.FilmOrSeries" />
+    </data>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="0dp"
+        android:layout_marginTop="0dp"
+        android:background="#272727">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="0dp"
+            android:layout_marginTop="0dp"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".TopRatedFragment">
+                <!-- TODO: Update blank fragment layout -->
+
+                <TextView
+                    android:id="@+id/filmName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/filmNamePlaceholder"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:filmName="@{film}"
+                    app:layout_constraintBottom_toTopOf="@+id/filmOriginalName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/filmOriginalName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/filmNameRussianPlaceholder"
+                    app:filmOriginalName="@{film}"
+                    app:layout_constraintBottom_toTopOf="@+id/filmImageBig"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filmName" />
+
+                <ImageView
+                    android:id="@+id/filmImageBig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    app:filmImage="@{film}"
+                    app:layout_constraintBottom_toTopOf="@+id/filmGenres"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filmOriginalName"
+                    app:srcCompat="@drawable/film_cover_placeholder_100x147" />
+
+                <TextView
+                    android:id="@+id/filmReleaseDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/filmReleaseDatePlaceholder"
+                    app:filmReleaseDate="@{film}"
+                    app:layout_constraintBottom_toTopOf="@+id/filmGenres"
+                    app:layout_constraintStart_toEndOf="@+id/filmImageBig" />
+
+                <TextView
+                    android:id="@+id/filmGenres"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/filmGenresPlaceholder"
+                    app:filmGenres="@{film}"
+                    app:layout_constraintBottom_toTopOf="@+id/filmDescription"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filmImageBig" />
+
+                <TextView
+                    android:id="@+id/filmRating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="@string/filmRatingPlaceholder"
+                    app:filmRating="@{film}"
+                    app:layout_constraintBottom_toTopOf="@+id/filmGenres"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/filmDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="@string/veryLongString"
+                    app:filmDescription="@{film}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filmGenres" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/interestedFilms"
+        android:checkable="true"
+        android:title="@string/interestedFilms" />
+    <item
+        android:id="@+id/watchLaterFilms"
+        android:checkable="true"
+        android:title="@string/watchLaterFilms" />
+    <item
+        android:id="@+id/currentlyWatchingFilms"
+        android:checkable="true"
+        android:title="@string/currentlyWatchingFilms" />
+    <item
+        android:id="@+id/finishedFilms"
+        android:checkable="true"
+        android:title="@string/finishedFilms" />
+    <item
+        android:id="@+id/likedFilms"
+        android:checkable="true"
+        android:title="@string/likedFilms" />
+    <item
+        android:id="@+id/lovedFilms"
+        android:checkable="true"
+        android:title="@string/lovedFilms" />
+</menu>

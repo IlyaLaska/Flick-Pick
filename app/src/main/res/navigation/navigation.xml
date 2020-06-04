@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/topRatedFragment">
+    <fragment
+        android:id="@+id/topRatedFragment"
+        android:name="com.flickPick.TopRatedFragment"
+        android:label="@string/topRated"
+        tools:layout="@layout/fragment_top_rated">
+        <action
+            android:id="@+id/action_topRatedFragment_to_filmViewFragment"
+            app:destination="@id/filmViewFragment" />
+        <action
+            android:id="@+id/action_topRatedFragment_to_searchResultsListFragment"
+            app:destination="@id/searchResultsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/popularFilmsFragment"
+        android:name="com.flickPick.FilmsFragment"
+        android:label="@string/popular"
+        tools:layout="@layout/fragment_popular_films">
+        <action
+            android:id="@+id/action_filmsFragment_to_filmViewFragment"
+            app:destination="@id/filmViewFragment" />
+        <action
+            android:id="@+id/action_popularFilmsFragment_to_searchResultsListFragment"
+            app:destination="@id/searchResultsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/topRatedSeriesFragment"
+        android:name="com.flickPick.SeriesFragment"
+        android:label="@string/topRated"
+        tools:layout="@layout/fragment_top_rated_series">
+        <action
+            android:id="@+id/action_seriesFragment_to_filmViewFragment"
+            app:destination="@id/filmViewFragment" />
+        <action
+            android:id="@+id/action_topRatedSeriesFragment_to_searchResultsListFragment"
+            app:destination="@id/searchResultsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmViewFragment"
+        android:name="com.flickPick.FilmViewFragment"
+        android:label="@string/details">
+        <argument
+            android:name="film"
+            app:argType="com.flickPick.FilmProperty" />
+    </fragment>
+    <fragment
+        android:id="@+id/interestedFragment"
+        android:name="com.flickPick.InterestedFragment"
+        android:label="@string/interestedFilms"
+        tools:layout="@layout/fragment_interested" >
+        <action
+            android:id="@+id/action_interestedFragment_to_filmOrSeriesViewFragment"
+            app:destination="@id/filmOrSeriesViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/watchLaterFragment"
+        android:name="com.flickPick.WatchLaterFragment"
+        android:label="@string/watchLaterFilms"
+        tools:layout="@layout/fragment_watch_later" >
+        <action
+            android:id="@+id/action_watchLaterFragment_to_filmOrSeriesViewFragment"
+            app:destination="@id/filmOrSeriesViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/currentlyWatchingFragment"
+        android:name="com.flickPick.CurrentlyWatchingFragment"
+        android:label="@string/currentlyWatchingFilms"
+        tools:layout="@layout/fragment_currently_watching" >
+        <action
+            android:id="@+id/action_currentlyWatchingFragment_to_filmOrSeriesViewFragment"
+            app:destination="@id/filmOrSeriesViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finishedFragment"
+        android:name="com.flickPick.FinishedFragment"
+        android:label="@string/finishedFilms"
+        tools:layout="@layout/fragment_finished" >
+        <action
+            android:id="@+id/action_finishedFragment_to_filmOrSeriesViewFragment"
+            app:destination="@id/filmOrSeriesViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/likedFragment"
+        android:name="com.flickPick.LikedFragment"
+        android:label="@string/likedFilms"
+        tools:layout="@layout/fragment_liked" >
+        <action
+            android:id="@+id/action_likedFragment_to_filmOrSeriesViewFragment"
+            app:destination="@id/filmOrSeriesViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lovedFragment"
+        android:name="com.flickPick.LovedFragment"
+        android:label="@string/lovedFilms"
+        tools:layout="@layout/fragment_loved" >
+        <action
+            android:id="@+id/action_lovedFragment_to_filmOrSeriesViewFragment"
+            app:destination="@id/filmOrSeriesViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/popularSeriesFragment"
+        android:name="com.flickPick.PopularSeriesFragment"
+        android:label="@string/popular"
+        tools:layout="@layout/fragment_popular_series">
+        <action
+            android:id="@+id/action_popularSeriesFragment2_to_filmViewFragment"
+            app:destination="@id/filmViewFragment" />
+        <action
+            android:id="@+id/action_popularSeriesFragment_to_searchResultsListFragment"
+            app:destination="@id/searchResultsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/currentlyPlayingFilmsFragment"
+        android:name="com.flickPick.CurrentlyPlayingFilmsFragment"
+        android:label="@string/currentlyPlaying"
+        tools:layout="@layout/fragment_currently_playing_films">
+        <action
+            android:id="@+id/action_currentlyPlayingFilmsFragment2_to_filmViewFragment"
+            app:destination="@id/filmViewFragment" />
+        <action
+            android:id="@+id/action_currentlyPlayingFilmsFragment_to_searchResultsListFragment"
+            app:destination="@id/searchResultsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/upcomingFilmsFragment"
+        android:name="com.flickPick.UpcomingFilmsFragment"
+        android:label="@string/upcoming"
+        tools:layout="@layout/fragment_upcoming_films">
+        <action
+            android:id="@+id/action_upcomingFilmsFragment2_to_filmViewFragment"
+            app:destination="@id/filmViewFragment" />
+        <action
+            android:id="@+id/action_upcomingFilmsFragment_to_searchResultsListFragment"
+            app:destination="@id/searchResultsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/currentlyPlayingSeriesFragment"
+        android:name="com.flickPick.CurrentlyPlayingSeriesFragment"
+        android:label="@string/currentlyPlaying"
+        tools:layout="@layout/fragment_currently_playing_series">
+        <action
+            android:id="@+id/action_currentlyPlayingSeriesFragment_to_filmViewFragment"
+            app:destination="@id/filmViewFragment" />
+        <action
+            android:id="@+id/action_currentlyPlayingSeriesFragment_to_searchResultsListFragment"
+            app:destination="@id/searchResultsListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmOrSeriesViewFragment"
+        android:name="com.flickPick.FilmOrSeriesViewFragment"
+        android:label="@string/details">
+        <argument
+            android:name="film"
+            app:argType="com.flickPick.FilmOrSeries" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchResultsListFragment"
+        android:name="com.flickPick.SearchResultsListFragment"
+        android:label="@string/searchResults">
+        <argument
+            android:name="searchQuery"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchResultsListFragment_to_filmViewFragment"
+            app:destination="@id/filmViewFragment" />
+    </fragment>
+</navigation>

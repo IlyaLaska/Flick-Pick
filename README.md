@@ -13,7 +13,7 @@ The app is a useful tool for anyone who wants to learn more about a particular f
 
 ## Tech Stack
 - Kotlin
-- PostgreSQL
+- SQLite
 - ...
 
 ## Team

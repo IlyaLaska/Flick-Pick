@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="film"
+            type="com.flickPick.FilmOrSeries" />
+        <variable
+            name="clickListener"
+            type="com.flickPick.FilmOrSeriesListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#282828"
+        android:onClick="@{() -> clickListener.onClick(film)}">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/filmImageBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"
+            app:filmImage="@{film}"
+            android:contentDescription="@string/filmPoster"
+            />
+
+        <TextView
+            android:id="@+id/filmName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:text="@string/filmNamePlaceholder"
+            app:layout_constraintBottom_toTopOf="@+id/filmOriginalName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/filmImageBig"
+            app:layout_constraintTop_toTopOf="parent"
+            app:filmName="@{film}"
+            />
+
+        <TextView
+            android:id="@+id/filmOriginalName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/filmNameRussianPlaceholder"
+            app:layout_constraintBottom_toTopOf="@+id/filmReleaseDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/filmImageBig"
+            app:layout_constraintTop_toBottomOf="@+id/filmName"
+            app:filmOriginalName="@{film}"
+            />
+
+        <TextView
+            android:id="@+id/filmReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/filmReleaseDatePlaceholder"
+            app:layout_constraintBottom_toTopOf="@+id/filmGenres"
+            app:layout_constraintStart_toEndOf="@+id/filmImageBig"
+            app:layout_constraintTop_toBottomOf="@+id/filmOriginalName"
+            app:filmReleaseDate="@{film}"
+            />
+
+        <TextView
+            android:id="@+id/filmGenres"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/filmGenresPlaceholder"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/filmImageBig"
+            app:layout_constraintTop_toBottomOf="@+id/filmReleaseDate"
+            app:filmGenres="@{film}"
+            />
+
+        <TextView
+            android:id="@+id/filmRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/filmRatingPlaceholder"
+            app:layout_constraintBottom_toTopOf="@+id/filmGenres"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/filmOriginalName"
+            app:filmRating="@{film}"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

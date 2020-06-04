@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/filmTypes">
+        <item
+            android:id="@+id/topRatedFragment"
+            android:title="@string/topRatedFilms" />
+        <item
+            android:id="@+id/popularFilmsFragment"
+            android:title="@string/popularFilms" />
+        <item
+            android:id="@+id/currentlyPlayingFilmsFragment"
+            android:title="@string/currentlyPlayingFilms" />
+        <item
+            android:id="@+id/upcomingFilmsFragment"
+            android:title="@string/upcomingFilms" />
+    </group>
+    <group android:id="@+id/seriesTypes">
+        <item
+            android:id="@+id/topRatedSeriesFragment"
+            android:title="@string/topRatedSeries" />
+        <item
+            android:id="@+id/popularSeriesFragment"
+            android:title="@string/popularSeries" />
+        <item
+            android:id="@+id/currentlyPlayingSeriesFragment"
+            android:title="@string/currentlyPlayingSeries" />
+    </group>
+    <group android:id="@+id/favouriteTypes">
+        <item
+            android:id="@+id/interestedFragment"
+            android:title="@string/interestedFilms" />
+        <item
+            android:id="@+id/watchLaterFragment"
+            android:title="@string/watchLaterFilms" />
+        <item
+            android:id="@+id/currentlyWatchingFragment"
+            android:title="@string/currentlyWatchingFilms" />
+        <item
+            android:id="@+id/finishedFragment"
+            android:title="@string/finishedFilms" />
+        <item
+            android:id="@+id/likedFragment"
+            android:title="@string/likedFilms" />
+        <item
+            android:id="@+id/lovedFragment"
+            android:title="@string/lovedFilms" />
+    </group>
+</menu>
