@@ -28,7 +28,7 @@ class SeriesFragment : BackHandlerFragment() {
 
         filmsListViewModel =  ViewModelProvider(this).get(FilmsListViewModel::class.java) //ViewModelProvider(this, viewModelFactory).get(FilmViewModel::class.java)
 //        binding.filmsListViewModel = filmsListViewModel
-        filmsListViewModel.getTopRatedSeries()
+        filmsListViewModel.getNeededFilms("Top Rated Series")
 
         val adapter = TopRatedAdapter(FilmListener {
                 film -> filmsListViewModel.onFilmClicked(film)
@@ -44,7 +44,7 @@ class SeriesFragment : BackHandlerFragment() {
         })
 
         //TODO replace top rated with regular films
-        filmsListViewModel.topRatedSeriesListNew.observe(viewLifecycleOwner, Observer {
+        filmsListViewModel.filmsList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }

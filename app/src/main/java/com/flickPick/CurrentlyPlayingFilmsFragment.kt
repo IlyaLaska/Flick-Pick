@@ -29,7 +29,7 @@ class CurrentlyPlayingFilmsFragment : BackHandlerFragment() {
 
         filmsListViewModel =  ViewModelProvider(this).get(FilmsListViewModel::class.java) //ViewModelProvider(this, viewModelFactory).get(FilmViewModel::class.java)
 //        binding.filmsListViewModel = filmsListViewModel
-        filmsListViewModel.getNowPlayingFilms()
+        filmsListViewModel.getNeededFilms("Currently Playing Films")
 
         val adapter = TopRatedAdapter(FilmListener {
                 filmId -> filmsListViewModel.onFilmClicked(filmId)
@@ -45,7 +45,7 @@ class CurrentlyPlayingFilmsFragment : BackHandlerFragment() {
         })
 
         //TODO replace top rated with regular films
-        filmsListViewModel.nowPlayingFilmsListNew.observe(viewLifecycleOwner, Observer {
+        filmsListViewModel.filmsList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }

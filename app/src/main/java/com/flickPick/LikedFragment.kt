@@ -47,11 +47,11 @@ class LikedFragment : Fragment() {
 //                Log.i("OBSER-IntrList", filmsListViewModel.interestedList.value.toString())
                 Log.i("OBSER-IT", it.toString())
                 Log.i("OBSER-User", filmViewModel.user.value.toString())
-                Log.i("OBSER-LIST", filmsListViewModel.likedList.value.toString())
+                Log.i("OBSER-LIST", filmsListViewModel.filmOrSeriesList.value.toString())
 //                if (filmsListViewModel.interestedList.value.isNullOrEmpty()) {
 //                filmsListViewModel._interestedList.value =  filmViewModel.user.value.Interested.toSet()
 //                filmsListViewModel._interestedList.value = null
-                filmsListViewModel.getLiked(it.Liked.toSet())}
+                filmsListViewModel.searchNeededFilms(it.Liked.toSet())}
 //                    filmsListViewModel.getInterested(it.Interested.toSet())}
 //                    updated = true
 //            }
@@ -71,7 +71,7 @@ class LikedFragment : Fragment() {
 //        })
 
         //TODO replace top rated with regular films
-        filmsListViewModel.likedList.observe(viewLifecycleOwner, Observer {
+        filmsListViewModel.filmOrSeriesList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it.toList())
             }

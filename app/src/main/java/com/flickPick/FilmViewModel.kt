@@ -22,17 +22,6 @@ class FilmViewModel (val database: FilmDatabaseDao, application: Application): A
     val user = MutableLiveData<UserProfile?>()
     private val username = "User"
 
-//    private var user = UserProfile()
-
-//    private var specialFilms: Map<String, List<Int>> = mapOf("Interested" to ArrayList(),
-//        "Watch Later" to ArrayList(), "Currently Watching" to ArrayList(),
-//        "Finished" to ArrayList(), "Liked" to ArrayList(), "Loved" to ArrayList())
-
-    //NOT MUTABLELIVEDATA FOR NOW
-//    private var specialFilms: MutableMap<String, ArrayList<Int>> = mutableMapOf("Interested" to ArrayList(),
-//        "Watch Later" to ArrayList(), "Currently Watching" to ArrayList(),
-//        "Finished" to ArrayList(), "Liked" to ArrayList(), "Loved" to ArrayList())
-
     data class SpecialFilmsClass (
         val interested: MutableSet<Pair<String, Int>> = mutableSetOf(),
         val watchLater: MutableSet<Pair<String, Int>> = mutableSetOf(),
@@ -44,29 +33,6 @@ class FilmViewModel (val database: FilmDatabaseDao, application: Application): A
 
     var specialFilmsNew = SpecialFilmsClass()
 
-//    private var specialFilms: MutableLiveData<MutableMap<String, ArrayList<Int>>> = MutableLiveData(mutableMapOf("Interested" to ArrayList(),
-//        "Watch Later" to ArrayList(), "Currently Watching" to ArrayList(),
-//        "Finished" to ArrayList(), "Liked" to ArrayList(), "Loved" to ArrayList()))
-
-
-
-//    private var interestedFilms = database.getCertainFilmsByName("Interested", user.value!!.Name)
-//    private var watchLaterFilms = database.getCertainFilmsByName("WatchLater", user.value!!.Name)
-//    private var currentlyWatchingFilms = database.getCertainFilmsByName("CurrentlyWatching", user.value!!.Name)
-//    private var finishedFilms = database.getCertainFilmsByName("Finished", user.value!!.Name)
-//    private var likedFilms = database.getCertainFilmsByName("Liked", user.value!!.Name)
-//    private var lovedFilms = database.getCertainFilmsByName("Loved", user.value!!.Name)
-
-//    private var specialFilms: MutableMap<String, ArrayList<Int>> = mutableMapOf(
-//        "Interested" to ArrayList(database.getCertainFilmsByName("Interested", user.value!!.Name).value!!),
-//        "Watch Later" to ArrayList(database.getCertainFilmsByName("WatchLater", user.value!!.Name).value!!),
-//            "Currently Watching" to ArrayList(database.getCertainFilmsByName("CurrentlyWatching", user.value!!.Name).value!!),
-//        "Finished" to ArrayList(database.getCertainFilmsByName("Finished", user.value!!.Name).value!!),
-//        "Liked" to ArrayList(database.getCertainFilmsByName("Liked", user.value!!.Name).value!!),
-//        "Loved" to ArrayList(database.getCertainFilmsByName("Loved", user.value!!.Name).value!!))
-
-//    private var specialFilms = database.getSpecialFilmsByName(user.value!!.name)
-
     init {
         Log.i("OBSER:FILM", "FILMviewModel created")
         initUser()
@@ -75,29 +41,16 @@ class FilmViewModel (val database: FilmDatabaseDao, application: Application): A
     private fun initUser() {
         uiScope.launch {
             Log.i("AB:", "BEFORE: ${user.value}")
-            val a = getAllFromDB()
+//            val a = getAllFromDB()
             user.value = getUserFromDB()
-//            user.value = UserProfile(Name=username, Interested=listOf(Pair("Film", 278)), WatchLater=listOf(Pair("Film", 278)),
-//                CurrentlyWatching=listOf(Pair("Film", 278)), Finished=listOf(Pair("Film", 278)), Liked=listOf(Pair("Film", 278)), Loved=listOf(Pair("Film", 278)))
-            Log.i("DB", a.toString())
+//            Log.i("DB", a.toString())
             Log.i("AB:", "After: ${user.value}")
-        }
-    }
-
-
-    private suspend fun getAllFromDB(): List<UserProfile> {
-        return withContext(Dispatchers.IO) {
-//            database.clearTable()
-//            database.insert(UserProfile(Name=username, Interested=listOf(Pair("Film", 278)), WatchLater=listOf(Pair("Film", 278)),
-//                CurrentlyWatching=listOf(Pair("Film", 278)), Finished=listOf(Pair("Film", 278)), Liked=listOf(Pair("Film", 278)), Loved=listOf(Pair("Film", 278))))
-            database.getAllTable()
-//            listOf(UserProfile(Name=username, Interested=listOf(Pair("Film", 278)), WatchLater=listOf(Pair("Film", 278)),
-//                CurrentlyWatching=listOf(Pair("Film", 278)), Finished=listOf(Pair("Film", 278)), Liked=listOf(Pair("Film", 278)), Loved=listOf(Pair("Film", 278))))
         }
     }
 
     private suspend fun getUserFromDB():UserProfile {
         return withContext(Dispatchers.IO) {
+//            database.clearTable()
 //            database.update(UserProfile(Id = 1, Name="User", Interested=listOf(), WatchLater=listOf(),
 //                CurrentlyWatching=listOf(), Finished=listOf(), Liked=listOf(), Loved=listOf()))
             database.getUserByName(username)
@@ -117,10 +70,6 @@ class FilmViewModel (val database: FilmDatabaseDao, application: Application): A
     private suspend fun getSpecialFilmsFromDBNew(): SpecialFilmsClass {
         return withContext(Dispatchers.IO) {
             val gotUser = database.getUserByName(username)
-//            val gotUser = user.value ?: UserProfile(Name=username, Interested=listOf(Pair("Film", 278)), WatchLater=listOf(Pair("Film", 278)),
-//                CurrentlyWatching=listOf(Pair("Film", 278)), Finished=listOf(Pair("Film", 278)), Liked=listOf(Pair("Film", 278)), Loved=listOf(Pair("Film", 278)))
-//            val test = database.getCertainFilmsTest(username)
-//            val ttt = database.getCertainFilmTTT(username)
             val interested = gotUser.Interested.toMutableSet() //(database.getCertainFilmsByName("Interested", username).toMutableSet())
             val watchLater = gotUser.WatchLater.toMutableSet() //(database.getCertainFilmsByName("Watch Later", username).toMutableSet())
             val currentlyWatching = gotUser.CurrentlyWatching.toMutableSet() //(database.getCertainFilmsByName("Currently Watching", username).toMutableSet())
@@ -134,42 +83,6 @@ class FilmViewModel (val database: FilmDatabaseDao, application: Application): A
             currentlyWatching = currentlyWatching, finished = finished, liked = liked, loved = loved)
         }
     }
-
-    //NOT MUTABLE LIVEDATA YET
-//    private suspend fun getSpecialFilmsFromDB(): MutableMap<String, ArrayList<Int>> {
-//        return withContext(Dispatchers.IO) {
-//            val interested = ArrayList(database.getCertainFilmsByName("Interested", username))
-//            val watchLater = ArrayList(database.getCertainFilmsByName("Watch Later", username))
-//            val currentlyWatching = ArrayList(database.getCertainFilmsByName("Currently Watching", username))
-//            val finished = ArrayList(database.getCertainFilmsByName("Finished", username))
-//            val liked = ArrayList(database.getCertainFilmsByName("Liked", username))
-//            val loved = ArrayList(database.getCertainFilmsByName("Loved", username))
-//            return@withContext mutableMapOf("Interested" to interested,
-//                "Watch Later" to watchLater, "Currently Watching" to currentlyWatching,
-//                "Finished" to finished, "Liked" to liked, "Loved" to loved)
-//        }
-//    }
-
-//    fun setMenuItemChecked(menuItem: String, filmId: Int): Boolean {
-//        Log.i("MNU:CHK:SPECIAL_FILMS", specialFilmsNew.toString())
-//        val test = when (menuItem) {
-//            "Interested" -> specialFilmsNew.interested.contains(filmId)
-//            "Watch Later" -> specialFilmsNew.watchLater.contains(filmId)
-//            "Currently Watching" -> specialFilmsNew.currentlyWatching.contains(filmId)
-//            "Finished" -> specialFilmsNew.finished.contains(filmId)
-//            "Liked" -> specialFilmsNew.liked.contains(filmId)
-//            "Loved" -> specialFilmsNew.loved.contains(filmId)
-//            else -> {
-//                Log.i("ERR:", "Unknown menu item: $menuItem")
-//                //throw Exception("Unknown Favourite Category")
-//                return false
-//            }
-//        }
-//        Log.i("MNU:CHK:ITEM", menuItem)
-//        Log.i("MNU:CHK:ID", filmId.toString())
-//        Log.i("MNU:CHK:", test.toString())
-//        return test
-//    }
 
     fun addOrRemoveSpecialFilm(category: String, filmPair: Pair<String, Int>) {
         Log.i("OBSER", "ADDorREMFunc")
@@ -243,6 +156,57 @@ class FilmViewModel (val database: FilmDatabaseDao, application: Application): A
         Log.i("OBSER: USER IN VM AFTER", user.value.toString())
     }
 
+    private suspend fun update(user: UserProfile) {
+        withContext(Dispatchers.IO) {
+            Log.i("AB:ADD", user.toString())
+            database.update(user)
+//            database.test(user.Interested)
+        }
+    }
+}
+//    private var user = UserProfile()
+
+//    private var specialFilms: Map<String, List<Int>> = mapOf("Interested" to ArrayList(),
+//        "Watch Later" to ArrayList(), "Currently Watching" to ArrayList(),
+//        "Finished" to ArrayList(), "Liked" to ArrayList(), "Loved" to ArrayList())
+
+//NOT MUTABLELIVEDATA FOR NOW
+//    private var specialFilms: MutableMap<String, ArrayList<Int>> = mutableMapOf("Interested" to ArrayList(),
+//        "Watch Later" to ArrayList(), "Currently Watching" to ArrayList(),
+//        "Finished" to ArrayList(), "Liked" to ArrayList(), "Loved" to ArrayList())
+
+
+//    private var specialFilms: MutableLiveData<MutableMap<String, ArrayList<Int>>> = MutableLiveData(mutableMapOf("Interested" to ArrayList(),
+//        "Watch Later" to ArrayList(), "Currently Watching" to ArrayList(),
+//        "Finished" to ArrayList(), "Liked" to ArrayList(), "Loved" to ArrayList()))
+
+//    private var interestedFilms = database.getCertainFilmsByName("Interested", user.value!!.Name)
+//    private var watchLaterFilms = database.getCertainFilmsByName("WatchLater", user.value!!.Name)
+//    private var currentlyWatchingFilms = database.getCertainFilmsByName("CurrentlyWatching", user.value!!.Name)
+//    private var finishedFilms = database.getCertainFilmsByName("Finished", user.value!!.Name)
+//    private var likedFilms = database.getCertainFilmsByName("Liked", user.value!!.Name)
+//    private var lovedFilms = database.getCertainFilmsByName("Loved", user.value!!.Name)
+
+//    private var specialFilms: MutableMap<String, ArrayList<Int>> = mutableMapOf(
+//        "Interested" to ArrayList(database.getCertainFilmsByName("Interested", user.value!!.Name).value!!),
+//        "Watch Later" to ArrayList(database.getCertainFilmsByName("WatchLater", user.value!!.Name).value!!),
+//            "Currently Watching" to ArrayList(database.getCertainFilmsByName("CurrentlyWatching", user.value!!.Name).value!!),
+//        "Finished" to ArrayList(database.getCertainFilmsByName("Finished", user.value!!.Name).value!!),
+//        "Liked" to ArrayList(database.getCertainFilmsByName("Liked", user.value!!.Name).value!!),
+//        "Loved" to ArrayList(database.getCertainFilmsByName("Loved", user.value!!.Name).value!!))
+
+//    private var specialFilms = database.getSpecialFilmsByName(user.value!!.name)
+
+//
+//    private suspend fun getAllFromDB(): List<UserProfile> {
+//        return withContext(Dispatchers.IO) {
+////            database.clearTable()
+////            database.insert(UserProfile(Name=username, Interested=listOf(Pair("Film", 278)), WatchLater=listOf(Pair("Film", 278)),
+////                CurrentlyWatching=listOf(Pair("Film", 278)), Finished=listOf(Pair("Film", 278)), Liked=listOf(Pair("Film", 278)), Loved=listOf(Pair("Film", 278))))
+//            database.getAllTable()
+//        }
+//    }
+
 //    fun addSpecialFilm(category: String, id: Int) {
 //        specialFilms.value!![category]?.add(id)
 ////        specialFilms.value!![category]!!.add(id)//Add locally
@@ -260,13 +224,39 @@ class FilmViewModel (val database: FilmDatabaseDao, application: Application): A
 //        }
 //    }
 
-    private suspend fun update(user: UserProfile) {
-        withContext(Dispatchers.IO) {
-            Log.i("AB:ADD", user.toString())
-            database.update(user)
-//            database.test(user.Interested)
-        }
-    }
-}
+//NOT MUTABLE LIVEDATA YET
+//    private suspend fun getSpecialFilmsFromDB(): MutableMap<String, ArrayList<Int>> {
+//        return withContext(Dispatchers.IO) {
+//            val interested = ArrayList(database.getCertainFilmsByName("Interested", username))
+//            val watchLater = ArrayList(database.getCertainFilmsByName("Watch Later", username))
+//            val currentlyWatching = ArrayList(database.getCertainFilmsByName("Currently Watching", username))
+//            val finished = ArrayList(database.getCertainFilmsByName("Finished", username))
+//            val liked = ArrayList(database.getCertainFilmsByName("Liked", username))
+//            val loved = ArrayList(database.getCertainFilmsByName("Loved", username))
+//            return@withContext mutableMapOf("Interested" to interested,
+//                "Watch Later" to watchLater, "Currently Watching" to currentlyWatching,
+//                "Finished" to finished, "Liked" to liked, "Loved" to loved)
+//        }
+//    }
 
-//TODO decide where to get username and how to store it and update username var
+//    fun setMenuItemChecked(menuItem: String, filmId: Int): Boolean {
+//        Log.i("MNU:CHK:SPECIAL_FILMS", specialFilmsNew.toString())
+//        val test = when (menuItem) {
+//            "Interested" -> specialFilmsNew.interested.contains(filmId)
+//            "Watch Later" -> specialFilmsNew.watchLater.contains(filmId)
+//            "Currently Watching" -> specialFilmsNew.currentlyWatching.contains(filmId)
+//            "Finished" -> specialFilmsNew.finished.contains(filmId)
+//            "Liked" -> specialFilmsNew.liked.contains(filmId)
+//            "Loved" -> specialFilmsNew.loved.contains(filmId)
+//            else -> {
+//                Log.i("ERR:", "Unknown menu item: $menuItem")
+//                //throw Exception("Unknown Favourite Category")
+//                return false
+//            }
+//        }
+//        Log.i("MNU:CHK:ITEM", menuItem)
+//        Log.i("MNU:CHK:ID", filmId.toString())
+//        Log.i("MNU:CHK:", test.toString())
+//        return test
+//    }
+

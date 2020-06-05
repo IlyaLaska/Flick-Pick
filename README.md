@@ -5,10 +5,8 @@ The app is a useful tool for anyone who wants to learn more about a particular f
 
 ## Features
 - Film descriptions pulled from IMDB/Kinopoisk
-- Film search by name, genre, actor, director
-- Film sorting by review score, genre
+- Film search by name
 - user profile with favourites, view history, watch later, etc.
-  - fingerprint authentification
 - (optional) links to watch a movie on filmix / other sites (maybe ability to watch in-app)
 
 ## Tech Stack

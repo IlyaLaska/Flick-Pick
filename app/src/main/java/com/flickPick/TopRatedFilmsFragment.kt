@@ -9,8 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavOptions
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.flickPick.databinding.FragmentTopRatedBinding
@@ -43,7 +41,7 @@ class TopRatedFragment : BackHandlerFragment() {
 
         filmsListViewModel =  ViewModelProvider(this).get(FilmsListViewModel::class.java) //ViewModelProvider(this, viewModelFactory).get(FilmViewModel::class.java)
         binding.filmsListViewModel = filmsListViewModel
-        filmsListViewModel.getTopRatedFilms()
+        filmsListViewModel.getNeededFilms("Top Rated Films")
         val adapter = TopRatedAdapter(FilmListener {
             film -> filmsListViewModel.onFilmClicked(film)
         })
@@ -57,7 +55,7 @@ class TopRatedFragment : BackHandlerFragment() {
             }
         })
 
-        filmsListViewModel.topRatedFilmsListNew.observe(viewLifecycleOwner, Observer {
+        filmsListViewModel.filmsList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }

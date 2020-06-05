@@ -10,11 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.flickPick.databinding.FragmentInterestedBinding
-import com.flickPick.databinding.FragmentPopularFilmsBinding
 import com.flickPick.db.FilmDatabase
-import kotlinx.android.synthetic.main.fragment_top_rated.*
 
 class InterestedFragment : Fragment() {
     private lateinit var filmsListViewModel: FilmsListViewModel
@@ -49,11 +46,11 @@ class InterestedFragment : Fragment() {
 //                Log.i("OBSER-IntrList", filmsListViewModel.interestedList.value.toString())
                 Log.i("OBSER-IT", it.toString())
                 Log.i("OBSER-User", filmViewModel.user.value.toString())
-                Log.i("OBSER-LIST", filmsListViewModel.interestedList.value.toString())
+                Log.i("OBSER-LIST", filmsListViewModel.filmOrSeriesList.value.toString())
 //                if (filmsListViewModel.interestedList.value.isNullOrEmpty()) {
 //                filmsListViewModel._interestedList.value =  filmViewModel.user.value.Interested.toSet()
 //                filmsListViewModel._interestedList.value = null
-                filmsListViewModel.getInterested(it.Interested.toSet())}
+                filmsListViewModel.searchNeededFilms(it.Interested.toSet())}
 //                    filmsListViewModel.getInterested(it.Interested.toSet())}
 //                    updated = true
 //            }
@@ -73,7 +70,7 @@ class InterestedFragment : Fragment() {
 //        })
 
         //TODO replace top rated with regular films
-        filmsListViewModel.interestedList.observe(viewLifecycleOwner, Observer {
+        filmsListViewModel.filmOrSeriesList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it.toList())
             }

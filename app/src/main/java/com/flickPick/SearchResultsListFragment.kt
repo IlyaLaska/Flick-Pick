@@ -28,7 +28,7 @@ class SearchResultsListFragment : BackHandlerFragment() {
         binding.filmsListViewModel = filmsListViewModel
         val args = SearchResultsListFragmentArgs.fromBundle(requireArguments())
         val searchQuery = args.searchQuery
-        filmsListViewModel.getSearchResultsFilms(searchQuery)//TODO call to populate list
+        filmsListViewModel.getNeededFilms("Search Results", searchQuery)//TODO call to populate list
 
         val adapter = TopRatedAdapter(FilmListener {
                 film -> filmsListViewModel.onFilmClicked(film)
@@ -45,7 +45,7 @@ class SearchResultsListFragment : BackHandlerFragment() {
             }
         })
 
-        filmsListViewModel.searchResultsList.observe(viewLifecycleOwner, Observer {
+        filmsListViewModel.filmsList.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }
@@ -84,8 +84,8 @@ class SearchResultsListFragment : BackHandlerFragment() {
                 Log.i("QUE:_SUBMIT", query)
                 //TODO reset the list and search again
                 if(query != null && query.isNotBlank()) {
-                    filmsListViewModel._searchResultsList.value = null
-                    filmsListViewModel.getSearchResultsFilms(query)
+                    filmsListViewModel.clearFilmsList()//_searchResultsList.value = null
+                    filmsListViewModel.getNeededFilms("Search Results", query)
                 }
                 return true
             }
